@@ -159,12 +159,48 @@ function collisionDetectionBricks() {
 
                     dy = -dy;
                     if (destroyedBricks === totalBricks) {
-                        alert("You Win!");
-                        document.location.reload();
+                        //     alert("You Win!");
+                        // document.location.reload();
+                        const victoryMessage = document.createElement('div');
+                        victoryMessage.textContent = "Congratulations! You've won!";
+                        victoryMessage.style.fontSize = '24px';
+                        victoryMessage.style.color = 'green';
+                        victoryMessage.style.textAlign = 'center';
+                        victoryMessage.style.marginTop = '20px';
+                        document.body.appendChild(victoryMessage);
+                        dy = 0;
+                        dx = 0;
+                        const restartButton = document.getElementById('resetButton')
+                restartButton.textContent = "Recommencer la partie";
+                restartButton.style.textAlign = 'center';
+                restartButton.style.cursor = "pointer";
+                restartButton.style.padding = "10px";
+                restartButton.style.backgroundColor = "green"
+                restartButton.style.color = "#fff";
+                restartButton.style.borderRadius = "4px"
+                restartButton.style.display = "block";
+                restartButton.style.margin = "20px auto";
+                restartButton.style.width = "150px"
+
+                restartButton.addEventListener("click", function(){
+                    lives = 3;
+                    document.location.reload();
+                });
                     }
                 }
             }
         }
+    }
+}
+
+
+function resetGame() {
+    document.location.reload();
+}
+
+function drawLoose() {
+    if (lives = 0) {
+
     }
 }
 
@@ -177,7 +213,6 @@ function draw() {
     drawExplosion();
     drawLives();
     collisionDetectionBricks();
-
     ballPositionX += dx;
     ballPositionY += dy;
 
@@ -200,9 +235,36 @@ function draw() {
         } else {
             lives--;
             if (lives <= 0) {
-                alert("You Lost...");
-                lives = 3;
-                document.location.reload();
+                // alert("You Lost...");
+                // lives = 3;
+                // document.location.reload();
+                const lossMessage = document.createElement('div');
+                lossMessage.textContent = "You lost! You'll be eaten by John Pork!";
+                lossMessage.style.fontSize = '24px';
+                lossMessage.style.color = 'red';
+                lossMessage.style.textAlign = 'center';
+                lossMessage.style.marginTop = '20px';
+                        document.body.appendChild(lossMessage);
+                        dy = 0;
+                        dx = 0;
+
+                const restartButton = document.getElementById('resetButton')
+                restartButton.textContent = "Recommencer la partie";
+                restartButton.style.textAlign = 'center';
+                restartButton.style.cursor = "pointer";
+                restartButton.style.padding = "10px";
+                restartButton.style.backgroundColor = "red"
+                restartButton.style.color = "#fff";
+                restartButton.style.borderRadius = "4px"
+                restartButton.style.display = "block";
+                restartButton.style.margin = "20px auto";
+                restartButton.style.width = "150px"
+
+                restartButton.addEventListener("click", function(){
+                    lives = 3;
+                    document.location.reload();
+                });
+               
             } else {
                 ballPositionX = canvas.width / 2;
                 ballPositionY = canvas.height - 30;
